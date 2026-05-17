@@ -18,8 +18,8 @@ const buildFilter = (query: AuthRequest['query'], userRole: string, userId: stri
 export const getLeads = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const { sort = 'latest', page = '1', limit = '10' } = req.query;
-    const pageNum = Math.max(1, parseInt(page as string));
-    const limitNum = Math.min(50, Math.max(1, parseInt(limit as string)));
+   const pageNum = Math.max(1, parseInt(String(page), 10));
+const limitNum = Math.min(100, Math.max(1, parseInt(String(limit), 10)));
     const skip = (pageNum - 1) * limitNum;
     const sortOrder = (sort as SortOrder) === 'oldest' ? 1 : -1;
 

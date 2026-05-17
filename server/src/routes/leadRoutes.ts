@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
 import { getLeads, getLead, createLead, updateLead, deleteLead, exportLeads } from '../controllers/leadController';
-import { authenticate, authorize } from '../middleware/auth';
+import { protect, authorize } from '../middleware/auth';
 import { validate } from '../middleware/validate';
 
 const router = Router();
 
-router.use(authenticate);
+router.use(protect);
 
 const leadValidation = [
   body('name').trim().notEmpty().withMessage('Name is required'),

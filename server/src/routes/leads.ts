@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import express from 'express';
+
 import {
   getLeads,
   getLead,
@@ -6,19 +7,22 @@ import {
   updateLead,
   deleteLead,
   exportLeads,
-} from '../controllers/leadsController';
+} from '../controllers/leadController';
+
 import { protect } from '../middleware/auth';
-import { leadValidation, validate } from '../middleware/validate';
 
-const router = Router();
+const router = express.Router();
 
-router.use(protect);
+router.get('/', protect, getLeads);
 
-router.get('/', getLeads);
-router.get('/export', exportLeads);
-router.get('/:id', getLead);
-router.post('/', leadValidation, validate, createLead);
-router.put('/:id', leadValidation, validate, updateLead);
-router.delete('/:id', deleteLead);
+router.get('/export', protect, exportLeads);
+
+router.get('/:id', protect, getLead);
+
+router.post('/', protect, createLead);
+
+router.put('/:id', protect, updateLead);
+
+router.delete('/:id', protect, deleteLead);
 
 export default router;

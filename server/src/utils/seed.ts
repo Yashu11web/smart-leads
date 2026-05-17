@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import mongoose from 'mongoose';
-import { User } from '../models/User';
-import { Lead } from '../models/Lead';
+import User from '../models/User';
+import Lead from '../models/Lead';
 
 const seed = async (): Promise<void> => {
   await mongoose.connect(process.env.MONGO_URI ?? 'mongodb://localhost:27017/smart_leads');
