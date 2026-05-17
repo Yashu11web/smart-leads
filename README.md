@@ -144,4 +144,3 @@ smart-leads/
 **Frontend (Vercel):** Deploy `client/` as a Vite project. Set `VITE_API_URL` if not using proxy.
 
 ---
-Built for ServiceHive MERN Internship Assignment
